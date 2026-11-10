@@ -1,5 +1,4 @@
 #ifndef AST_HPP
-#ifndef AST_HPP
 #define AST_HPP
 
 #include "Tokens.hpp"

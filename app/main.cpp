@@ -1,3 +1,4 @@
+#include "Optimizer.hpp"
 #include <iostream>
 #include <memory>
 #include <string>
@@ -101,6 +102,15 @@ int main() {
     ResultadoSemantico resultado = analizador.analyze(
         *ast, ContextoEntrada{false, parser.huboErroresSintacticos()});
     if (!resultado.ok()) return SALIDA_ERROR_SEMANTICO;
+
+    // --- Optimización del AST (solo llega aquí si el semántico no marcó errores) ---
+    std::cout << "\n--- AST antes de optimizar ---\n" << ast->toString() << "\n";
+
+    Optimizer optimizador;
+    OptimizationStats stats = optimizador.optimize(*ast);
+
+    std::cout << "\n--- AST optimizado ---\n" << ast->toString() << "\n";
+    stats.dump(std::cout);
 
     std::cout << "\n--- AST generado  ---\n";
     std::cout << ast->toString() << "\n";
