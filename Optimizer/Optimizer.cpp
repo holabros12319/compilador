@@ -176,6 +176,20 @@ bool isIntConst(const Const& c, long long v) { return !c.isDouble && c.i == v; }
 // Efectos secundarios
 // ---------------------------------------------------------------------------
 
+// Solo estos operadores son "puros". Cualquier otro (<<, >>, +=, ++, &, ...)
+// se trata como si tuviera efectos (E/S, modifica variables). Lista blanca a
+// proposito: si el Parser agrega operadores nuevos, el optimizador NO los
+// borra ni los toma por constantes por accidente.
+bool isPureBinaryOp(const std::string& op) {
+    return op == "+" || op == "-" || op == "*" || op == "/" || op == "%" ||
+           op == "==" || op == "!=" || op == "<" || op == "<=" || op == ">" ||
+           op == ">=" || op == "&&" || op == "||";
+}
+
+bool isPureUnaryOp(const std::string& op) {
+    return op == "-" || op == "+" || op == "!" || op == "~";
+}
+
 // true si evaluar la expresion no cambia nada observable (se puede eliminar).
 bool isPure(const Expr* e) {
     if (!e) return true;
@@ -187,12 +201,12 @@ bool isPure(const Expr* e) {
         return isPure(static_cast<const MemberExpr*>(e)->object.get());
     case NodeKind::UnaryExpr: {
         const auto* u = static_cast<const UnaryExpr*>(e);
-        if (u->op == "++" || u->op == "--") return false;
+        if (!isPureUnaryOp(u->op)) return false;
         return isPure(u->operand.get());
     }
     case NodeKind::BinaryExpr: {
         const auto* b = static_cast<const BinaryExpr*>(e);
-        if (b->op == "=") return false;
+        if (!isPureBinaryOp(b->op)) return false;
         if (b->op == "/" || b->op == "%") { // una division podria fallar en ejecucion
             Const c;
             if (!getConstant(b->right.get(), c) || (!c.isDouble && c.i == 0) ||
@@ -275,13 +289,18 @@ private:
             break;
         case NodeKind::UnaryExpr: {
             const auto* u = static_cast<const UnaryExpr*>(e);
-            if (u->op == "++" || u->op == "--") markModified(u->operand.get());
+            if (!isPureUnaryOp(u->op)) markModified(u->operand.get()); // ++, --, &, ...
             scanExpr(u->operand.get());
             break;
         }
         case NodeKind::BinaryExpr: {
             const auto* b = static_cast<const BinaryExpr*>(e);
-            if (b->op == "=") markModified(b->left.get());
+            if (b->op == "=" || b->op == "<<") {
+                markModified(b->left.get());          // x = ...   /   cout << ...
+            } else if (!isPureBinaryOp(b->op)) {
+                markModified(b->left.get());          // cin >> x, x += 1, ...
+                markModified(b->right.get());
+            }
             scanExpr(b->left.get());
             scanExpr(b->right.get());
             break;
@@ -402,7 +421,7 @@ private:
 
         case NodeKind::UnaryExpr: {
             auto& u = static_cast<UnaryExpr&>(*e);
-            if (u.op == "++" || u.op == "--") return; // el operando es un lvalue
+            if (!isPureUnaryOp(u.op)) return; // ++, --, &...: el operando es un lvalue
             rewriteExpr(u.operand);
             if (!u.isPrefix || !u.operand) return;
 

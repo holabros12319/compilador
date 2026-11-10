@@ -31,16 +31,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7b3aec3-2286-498b-b317-d57e3b630452" name="Changes" comment="JUAMPI TORRICO">
-      <change afterPath="$PROJECT_DIR$/Optimizer/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Optimizer/Optimizer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Optimizer/Optimizer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Optimizer/optimizer_demo.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AST.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/AST.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lista_Completa_Mods_Cyberpunk_2077.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.cpp" afterDir="false" />
+    <list default="true" id="c7b3aec3-2286-498b-b317-d57e3b630452" name="Changes" comment="Optimizacion">
+      <change beforePath="$PROJECT_DIR$/Optimizer/Optimizer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Optimizer/Optimizer.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +45,7 @@
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="13" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -74,23 +67,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.000229390572362" />
-      <entry key="MS500" value="1.2157518330977828" />
-      <entry key="S2" value="2.2583781134607177" />
-      <entry key="S5" value="3.0917507914801656" />
-      <entry key="S10" value="3.821559497066283" />
-      <entry key="S30" value="5.840412751744337" />
-      <entry key="S60" value="7.6484844246534305" />
-      <entry key="M2" value="10.984171777968857" />
-      <entry key="M5" value="17.033547982750452" />
-      <entry key="M10" value="20.7642654410591" />
-      <entry key="M15" value="22.31472110787885" />
-      <entry key="M30" value="24.051962287278467" />
-      <entry key="H1" value="24.99801149261224" />
-      <entry key="H2" value="25.49179963037343" />
-      <entry key="H4" value="25.744070839991544" />
-      <entry key="D1" value="25.95708875118657" />
-      <entry key="W1" value="25.99386351161767" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000580920804094" />
+      <entry key="S5" value="1.0556115652085623" />
+      <entry key="S10" value="1.603844909107392" />
+      <entry key="S30" value="4.671864547380306" />
+      <entry key="S60" value="7.597728754290532" />
+      <entry key="M2" value="11.73252830731745" />
+      <entry key="M5" value="18.634769448732964" />
+      <entry key="M10" value="22.91125613849724" />
+      <entry key="M15" value="24.703323887442632" />
+      <entry key="M30" value="26.722265361432346" />
+      <entry key="H1" value="27.826614539182984" />
+      <entry key="H2" value="28.404390192496965" />
+      <entry key="H4" value="28.699928804001274" />
+      <entry key="D1" value="28.94967017721839" />
+      <entry key="W1" value="28.99280219661917" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -112,23 +105,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9077093907403739" />
-      <entry key="MS500" value="1.1873368812750673" />
-      <entry key="S2" value="2.2360330962302117" />
-      <entry key="S5" value="3.0755960625751726" />
-      <entry key="S10" value="3.769095508752029" />
-      <entry key="S30" value="5.4885853325875615" />
-      <entry key="S60" value="7.094870969008929" />
-      <entry key="M2" value="10.401206026430584" />
-      <entry key="M5" value="16.63571363393913" />
-      <entry key="M10" value="20.522332865298228" />
-      <entry key="M15" value="22.14219112759573" />
-      <entry key="M30" value="23.959584488453867" />
-      <entry key="H1" value="24.95019442995" />
-      <entry key="H2" value="25.46747083793764" />
-      <entry key="H4" value="25.73179967833875" />
-      <entry key="D1" value="25.95502858246972" />
-      <entry key="W1" value="25.993568833136813" />
+      <entry key="MS100" value="0.9330329915368074" />
+      <entry key="MS500" value="0.9862327044933592" />
+      <entry key="S2" value="0.9965948793494342" />
+      <entry key="S5" value="1.053271168633388" />
+      <entry key="S10" value="1.5945229510765306" />
+      <entry key="S30" value="4.503484458466292" />
+      <entry key="S60" value="7.216904182346552" />
+      <entry key="M2" value="11.249166562449949" />
+      <entry key="M5" value="18.26537745326364" />
+      <entry key="M10" value="22.67794805069339" />
+      <entry key="M15" value="24.53482780952111" />
+      <entry key="M30" value="26.63089914684109" />
+      <entry key="H1" value="27.779020954306258" />
+      <entry key="H2" value="28.38009837006078" />
+      <entry key="H4" value="28.68765689010635" />
+      <entry key="D1" value="28.94760716400907" />
+      <entry key="W1" value="28.992507044568082" />
     </decayedShown>
   </component>
   <component name="ProjectApplicationVersion">
@@ -151,34 +144,35 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ File.main.cpp.executor&quot;: &quot;Run&quot;,
-    &quot;CidrDebugProfileConversion&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/VICTORPATLAN/Desktop/Compilador&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.main.cpp.executor": "Run",
+    "CMake Application.compiler_app.executor": "Run",
+    "CidrDebugProfileConversion": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/VICTORPATLAN/Desktop/Compilador",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "configurable.group.build"
   }
-}</component>
-  <component name="RunManager" selected="C/C++ File.main.cpp">
+}]]></component>
+  <component name="RunManager" selected="CMake Application.compiler_app">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
@@ -247,17 +241,24 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SelectedDebugProfileService">{
-  &quot;profileIdByStamp&quot;: [
+  <component name="SelectedDebugProfileService"><![CDATA[{
+  "profileIdByStamp": [
     {
-      &quot;first&quot;: {
-        &quot;##RUN_CONFIGURATION##&quot;: &quot;C/C++ File.main.cpp&quot;
+      "first": {
+        "##RUN_CONFIGURATION##": "CMake Application.compiler_app",
+        "cmake": "CMakeBuildProfile:Debug"
       },
-      &quot;second&quot;: &quot;7a6a75d1-1699-4388-b85a-27704a8aaf8d&quot;
+      "second": "7a6a75d1-1699-4388-b85a-27704a8aaf8d"
+    },
+    {
+      "first": {
+        "##RUN_CONFIGURATION##": "C/C++ File.main.cpp"
+      },
+      "second": "7a6a75d1-1699-4388-b85a-27704a8aaf8d"
     }
   ],
-  &quot;modificationCount&quot;: 2
-}</component>
+  "modificationCount": 4
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c7b3aec3-2286-498b-b317-d57e3b630452" name="Changes" comment="" />
@@ -290,7 +291,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="JUAMPI TORRICO" />
-    <option name="LAST_COMMIT_MESSAGE" value="JUAMPI TORRICO" />
+    <MESSAGE value="Optimizacion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimizacion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
