@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="SimpleCompiler" targetName="SemanticLib" />
+      <config projectName="SimpleCompiler" targetName="LexerLib" />
+      <config projectName="SimpleCompiler" targetName="IntermediateCodeLib" />
+      <config projectName="SimpleCompiler" targetName="ParserLib" />
+      <config projectName="SimpleCompiler" targetName="compiler_app" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="91cebcf8-f778-4103-8546-576fe9e58ba1" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.5133023663330056" />
+      <entry key="MS500" value="3.931817754003142" />
+      <entry key="S2" value="10.5564023256539" />
+      <entry key="S5" value="21.779061713625605" />
+      <entry key="S10" value="36.3534249325977" />
+      <entry key="S30" value="66.58457674855043" />
+      <entry key="S60" value="82.84273885551902" />
+      <entry key="M2" value="103.15081141996522" />
+      <entry key="M5" value="162.92735961295273" />
+      <entry key="M10" value="226.74199448487684" />
+      <entry key="M15" value="265.5318774343667" />
+      <entry key="M30" value="326.6272541500785" />
+      <entry key="H1" value="373.52575087336857" />
+      <entry key="H2" value="403.956304526421" />
+      <entry key="H4" value="421.5317834714502" />
+      <entry key="D1" value="437.6120114575452" />
+      <entry key="W1" value="440.51232514560377" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="9.18169440492314E-173" />
+      <entry key="S10" value="9.582115844072899E-87" />
+      <entry key="S30" value="2.1239965435524648E-29" />
+      <entry key="S60" value="4.6086836987934435E-15" />
+      <entry key="M2" value="6.78872867243452E-8" />
+      <entry key="M5" value="0.0013574235532889663" />
+      <entry key="M10" value="0.03684322940906484" />
+      <entry key="M15" value="0.1107231570139819" />
+      <entry key="M30" value="0.33275089333310837" />
+      <entry key="H1" value="0.5768456408200644" />
+      <entry key="H2" value="0.7595035489186759" />
+      <entry key="H4" value="0.8714950079711675" />
+      <entry key="D1" value="0.9773365725040793" />
+      <entry key="W1" value="0.9967304722483696" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.410132090769683" />
+      <entry key="MS500" value="3.8809729743132118" />
+      <entry key="S2" value="10.522810340095859" />
+      <entry key="S5" value="21.750380781984624" />
+      <entry key="S10" value="36.32870355214067" />
+      <entry key="S30" value="66.56899542421677" />
+      <entry key="S60" value="82.8327720695419" />
+      <entry key="M2" value="103.14395079646832" />
+      <entry key="M5" value="162.92340261613592" />
+      <entry key="M10" value="226.77311301005324" />
+      <entry key="M15" value="265.63610187904237" />
+      <entry key="M30" value="326.9531504570223" />
+      <entry key="H1" value="374.0971989143459" />
+      <entry key="H2" value="404.71235722204716" />
+      <entry key="H4" value="422.40131879518725" />
+      <entry key="D1" value="438.5889840761109" />
+      <entry key="W1" value="441.5090026403751" />
+    </decayedShown>
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2026" />
+    <option name="minorVersion" value="3" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LnJz07lvb3pF4GCgulK1B9Faz1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;C/C++ File.main.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Application.compiler_app.executor&quot;: &quot;Run&quot;,
+    &quot;CidrDebugProfileConversion&quot;: &quot;true&quot;,
+    &quot;CidrDebugProfileConversion262&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Hello/Documents/Compu/Compiler&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;
+  }
+}</component>
+  <component name="RunManager" selected="CMake Application.compiler_app">
+    <configuration name="IntermediateCodeLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SimpleCompiler" TARGET_NAME="IntermediateCodeLib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LexerLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SimpleCompiler" TARGET_NAME="LexerLib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ParserLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SimpleCompiler" TARGET_NAME="ParserLib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SemanticLib" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SimpleCompiler" TARGET_NAME="SemanticLib" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="compiler_app" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SimpleCompiler" TARGET_NAME="compiler_app" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SimpleCompiler" RUN_TARGET_NAME="compiler_app">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main" type="CppFileRunConfiguration" factoryName="CppFileRunConfiguration" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Compiler" TARGET_NAME="main" CONFIG_NAME="main">
+      <option name="sourceFile" value="C:\Users\Hello\Documents\Compu\Compiler\app\main.cpp" />
+      <option name="toolchainName" value="MinGW" />
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.runfile.CppFileBuildBeforeRunTaskProvider$BasicBuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="C/C++ File.Unnamed" />
+      <item itemvalue="C/C++ File.main" />
+      <item itemvalue="CMake Application.IntermediateCodeLib" />
+      <item itemvalue="CMake Application.LexerLib" />
+      <item itemvalue="CMake Application.ParserLib" />
+      <item itemvalue="CMake Application.SemanticLib" />
+      <item itemvalue="CMake Application.compiler_app" />
+    </list>
+  </component>
+  <component name="SelectedDebugProfileService">{
+  &quot;profileIdByStamp&quot;: [
+    {
+      &quot;first&quot;: {
+        &quot;##RUN_CONFIGURATION##&quot;: &quot;C/C++ File.main&quot;
+      },
+      &quot;second&quot;: &quot;3ad2b770-8a5e-4b60-8543-3157f369a816&quot;
+    },
+    {
+      &quot;first&quot;: {
+        &quot;##RUN_CONFIGURATION##&quot;: &quot;CMake Application.compiler_app&quot;,
+        &quot;cmake&quot;: null
+      },
+      &quot;second&quot;: &quot;3ad2b770-8a5e-4b60-8543-3157f369a816&quot;
+    },
+    {
+      &quot;first&quot;: {
+        &quot;##RUN_CONFIGURATION##&quot;: &quot;C/C++ File.Unnamed&quot;
+      },
+      &quot;second&quot;: &quot;3ad2b770-8a5e-4b60-8543-3157f369a816&quot;
+    },
+    {
+      &quot;first&quot;: {
+        &quot;##RUN_CONFIGURATION##&quot;: &quot;CMake Application.compiler_app&quot;,
+        &quot;cmake&quot;: &quot;CMakeBuildProfile:Debug&quot;
+      },
+      &quot;second&quot;: &quot;3ad2b770-8a5e-4b60-8543-3157f369a816&quot;
+    }
+  ],
+  &quot;modificationCount&quot;: 13
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="91cebcf8-f778-4103-8546-576fe9e58ba1" name="Changes" comment="" />
+      <created>1794084158195</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1794084158195</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+    <isAutomaticBootstrapAfterUpdate value="false" />
+  </component>
+</project>
