@@ -1,7 +1,88 @@
 #include "CodeGenerator.h"
 
+#include <cctype>
+#include <map>
 #include <stdexcept>
 #include <string>
+#include <vector>
+
+// ---------- Soporte para la fase 6 (codigo nativo) ----------
+//
+// El TAC clasico no conserva tipos ni ambitos. Para poder generar codigo
+// maquina correcto este generador agrega, SIN cambiar los headers:
+//   * literales con su forma original  ("texto", 'c', 42, 3.5)
+//   * nombres unicos para variables con el mismo nombre en ambitos distintos
+//     (x, x$1, x$2 ...) y para las que chocarian con temporales (t3 -> t3$0)
+//   * anotaciones de tipo en campos que antes iban vacios (ver NativeBackend.cpp)
+namespace {
+
+struct EstadoAmbitos {
+    std::vector<std::map<std::string, std::string>> ambitos{1};
+    std::map<std::string, int> usos;         // veces que se declaro cada nombre (funcion actual)
+    std::map<std::string, int> usosGlobales; // idem, solo globales
+    void reiniciar() {
+        ambitos.assign(1, {});
+        usos.clear();
+        usosGlobales.clear();
+    }
+};
+
+EstadoAmbitos& estado() {
+    static EstadoAmbitos e;
+    return e;
+}
+
+bool pareceTemporal(const std::string& n) {
+    if (n.size() < 2 || (n[0] != 't' && n[0] != 'L')) return false;
+    for (std::size_t i = 1; i < n.size(); ++i)
+        if (!std::isdigit(static_cast<unsigned char>(n[i]))) return false;
+    return true;
+}
+
+std::string declararNombre(const std::string& nombre) {
+    EstadoAmbitos& e = estado();
+    int k = e.usos[nombre]++;
+    std::string unico = (k == 0 && !pareceTemporal(nombre)) ? nombre : nombre + "$" + std::to_string(k);
+    e.ambitos.back()[nombre] = unico;
+    if (e.ambitos.size() == 1) e.usosGlobales = e.usos;
+    return unico;
+}
+
+std::string resolverNombre(const std::string& nombre) {
+    const EstadoAmbitos& e = estado();
+    for (auto it = e.ambitos.rbegin(); it != e.ambitos.rend(); ++it) {
+        auto f = it->find(nombre);
+        if (f != it->end()) return f->second;
+    }
+    return nombre;  // funcion, cout, cin...
+}
+
+std::string escaparLiteral(const std::string& s) {
+    std::string r;
+    for (unsigned char c : s) {
+        switch (c) {
+            case '\\': r += "\\\\"; break;
+            case '"': r += "\\\""; break;
+            case '\'': r += "\\'"; break;
+            case '\n': r += "\\n"; break;
+            case '\t': r += "\\t"; break;
+            case '\r': r += "\\r"; break;
+            case '\0': r += "\\0"; break;
+            default:
+                if (c < 32 || c == 127) {
+                    static const char* hex = "0123456789abcdef";
+                    r += "\\x";
+                    r += hex[c >> 4];
+                    r += hex[c & 15];
+                } else {
+                    r += static_cast<char>(c);
+                }
+        }
+    }
+    return r;
+}
+
+}  // namespace
 
 // ---------- Quadruple ----------
 
@@ -78,7 +159,7 @@ OpCode CodeGenerator::mapStringToOpCode(const std::string& op) {
     if (op == "&&") return OpCode::AND;
     if (op == "||") return OpCode::OR;
     if (op == "=")  return OpCode::ASSIGN;
-    // El conjunto de opcodes definido por la especificación no incluye MOD.
+    // Operador sin opcode equivalente en el IR.
     throw std::invalid_argument("Operador binario no soportado por el IR: " + op);
 }
 
@@ -104,12 +185,15 @@ const CodeBuffer& CodeGenerator::getBuffer() const {
 
 void CodeGenerator::visit(const LiteralExpr& node) {
     // El valor literal se convierte en el temporal actual sin emitir cuádrupla.
-    lastTemp = node.value;
+    // Cadenas y caracteres conservan su forma ("..." / '.') para que el backend sepa su tipo.
+    if (node.literalType == TipoToken::CADENA) lastTemp = "\"" + escaparLiteral(node.value) + "\"";
+    else if (node.literalType == TipoToken::CARACTER) lastTemp = "'" + escaparLiteral(node.value) + "'";
+    else lastTemp = node.value;
 }
 
 void CodeGenerator::visit(const IdentifierExpr& node) {
     // El nombre del identificador se convierte en el temporal actual sin emitir cuádrupla.
-    lastTemp = node.name;
+    lastTemp = resolverNombre(node.name);
 }
 
 // ---------- CodeGenerator: expresiones compuestas ----------
@@ -145,6 +229,28 @@ void CodeGenerator::visit(const BinaryExpr& node) {
         return;
     }
 
+    // && y || con evaluacion en cortocircuito (como en C): el operando derecho
+    // solo se evalua si hace falta.
+    if (node.op == "&&" || node.op == "||") {
+        std::string res = buffer.newTemp();
+        std::string lFin = buffer.newLabel();
+        buffer.emit(OpCode::ASSIGN, "", "@bool", res);
+        if (node.left) node.left->accept(*this);
+        buffer.emit(OpCode::NEQ, lastTemp, "0", res);
+        if (node.op == "&&") {
+            buffer.emit(OpCode::IF_FALSE_GOTO, res, "", lFin);
+        } else {
+            std::string neg = buffer.newTemp();
+            buffer.emit(OpCode::NOT, res, "", neg);
+            buffer.emit(OpCode::IF_FALSE_GOTO, neg, "", lFin);
+        }
+        if (node.right) node.right->accept(*this);
+        buffer.emit(OpCode::NEQ, lastTemp, "0", res);
+        buffer.emit(OpCode::LABEL, "", "", lFin);
+        lastTemp = res;
+        return;
+    }
+
     // Visitar operando izquierdo y salvar resultado local.
     if (node.left) {
         node.left->accept(*this);
@@ -170,6 +276,28 @@ void CodeGenerator::visit(const UnaryExpr& node) {
     }
     std::string operando = lastTemp;
 
+    // '+' unario: no cambia el valor, no requiere cuádrupla.
+    if (node.op == "+") {
+        lastTemp = operando;
+        return;
+    }
+
+    // '++' / '--' (prefijo y postfijo): el IR no tiene opcode de incremento,
+    // se baja a  t = operando +/- 1;  operando = t  con los opcodes existentes.
+    if (node.op == "++" || node.op == "--") {
+        std::string valorPrevio;
+        if (!node.isPrefix) {
+            // Postfijo: el valor de la expresión es el anterior a la modificación.
+            valorPrevio = buffer.newTemp();
+            buffer.emit(OpCode::ASSIGN, operando, "", valorPrevio);
+        }
+        std::string nuevo = buffer.newTemp();
+        buffer.emit(node.op == "++" ? OpCode::ADD : OpCode::SUB, operando, "1", nuevo);
+        buffer.emit(OpCode::ASSIGN, nuevo, "", operando);
+        lastTemp = node.isPrefix ? operando : valorPrevio;
+        return;
+    }
+
     // Generar temporal destino y emitir la cuádrupla correspondiente.
     std::string target = buffer.newTemp();
     buffer.emit(mapStringToUnaryOpCode(node.op), operando, "", target);
@@ -188,10 +316,17 @@ void CodeGenerator::visit(const MemberExpr& node) {
 // ---------- CodeGenerator: sentencias base ----------
 
 void CodeGenerator::visit(const VarDecl& node) {
-    // Si hay inicializador, evaluarlo y emitir asignación.
+    // El inicializador se evalua antes de declarar el nombre (ve el ambito exterior).
+    std::string valorInicial;
     if (node.initializer) {
         node.initializer->accept(*this);
-        buffer.emit(OpCode::ASSIGN, lastTemp, "", node.name);
+        valorInicial = lastTemp;
+    }
+    // Declaracion tipada (la usa el backend para reservar espacio) + asignacion inicial.
+    std::string unico = declararNombre(node.name);
+    buffer.emit(OpCode::ASSIGN, "", "@" + node.type, unico);
+    if (node.initializer) {
+        buffer.emit(OpCode::ASSIGN, valorInicial, "", unico);
     }
 }
 
@@ -269,6 +404,8 @@ void CodeGenerator::visit(const WhileStmt& node) {
 }
 
 void CodeGenerator::visit(const ForStmt& node) {
+    // La variable del for vive solo dentro del bucle.
+    estado().ambitos.emplace_back();
     // Inicialización.
     if (node.init) {
         node.init->accept(*this);
@@ -299,11 +436,13 @@ void CodeGenerator::visit(const ForStmt& node) {
     // Volver al inicio y marcar salida.
     buffer.emit(OpCode::GOTO, "", "", lStart);
     buffer.emit(OpCode::LABEL, "", "", lEnd);
+    estado().ambitos.pop_back();
 }
 
 // ---------- CodeGenerator: bloques y colecciones ----------
 
 void CodeGenerator::visit(const ProgramNode& node) {
+    estado().reiniciar();
     for (const auto& stmt : node.declarations) {
         if (stmt) {
             stmt->accept(*this);
@@ -312,33 +451,51 @@ void CodeGenerator::visit(const ProgramNode& node) {
 }
 
 void CodeGenerator::visit(const BlockStmt& node) {
+    estado().ambitos.emplace_back();
     for (const auto& stmt : node.statements) {
         if (stmt) {
             stmt->accept(*this);
         }
     }
+    estado().ambitos.pop_back();
 }
 
 // ---------- CodeGenerator: funciones y estructuras ----------
 
 void CodeGenerator::visit(const StructDecl& node) {
-    // Método intencionalmente vacío (declaración abstracta, sin TAC).
-    (void)node;
+    // Sin codigo ejecutable, pero el backend necesita el layout: "campo:tipo;campo:tipo".
+    std::string campos;
+    for (const auto& campo : node.fields) {
+        if (!campo) continue;
+        if (!campos.empty()) campos += ";";
+        campos += campo->name + ":" + campo->type;
+    }
+    buffer.emit(OpCode::ASSIGN, campos, "@struct", node.name);
 }
 
 void CodeGenerator::visit(const FunctionDecl& node) {
-    // Etiqueta con el nombre de la función.
-    buffer.emit(OpCode::LABEL, "", "", node.name);
+    // Un prototipo no genera codigo (antes dejaba una etiqueta sin cuerpo).
+    if (!node.body) return;
 
-    // Vincular parámetros.
+    EstadoAmbitos& e = estado();
+    e.usos = e.usosGlobales;       // cada funcion numera sus propios nombres
+    e.ambitos.emplace_back();      // ambito de la funcion (parametros)
+
+    // Etiqueta con el nombre de la función; arg1 "@tipo" marca el inicio y el tipo de retorno.
+    buffer.emit(OpCode::LABEL, "@" + node.returnType, "", node.name);
+
+    // Vincular parámetros (con su tipo).
     for (const auto& param : node.parameters) {
-        buffer.emit(OpCode::POP_PARAM, "", "", param.name);
+        std::string unico = declararNombre(param.name);
+        buffer.emit(OpCode::POP_PARAM, "", "@" + param.type, unico);
     }
 
-    // Recorrer el cuerpo si existe.
-    if (node.body) {
-        node.body->accept(*this);
-    }
+    // Recorrer el cuerpo.
+    node.body->accept(*this);
+
+    // Marca de fin de funcion.
+    buffer.emit(OpCode::LABEL, "@end", "", node.name);
+    e.ambitos.pop_back();
 }
 
 void CodeGenerator::visit(const CallExpr& node) {
