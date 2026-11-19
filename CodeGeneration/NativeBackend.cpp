@@ -888,6 +888,21 @@ public:
         }
         I("call cg_init_globals");
         I("call " + findFunc("main")->label());
+        if (win_) {
+            // Pausa al terminar para que la ventana no se cierre al abrir el .exe con doble clic.
+            // Se omite si existe la variable de entorno CG_NOPAUSE (la define compiler_app --run).
+            I("mov DWORD PTR [rbp - 4], eax");
+            I("xor ecx, ecx");
+            callC("fflush");
+            I("lea rcx, [rip + " + strLabel("CG_NOPAUSE") + "]");
+            callC("getenv");
+            I("test rax, rax");
+            I("jnz .Lcg_nopause");
+            I("lea rcx, [rip + " + strLabel("pause") + "]");
+            callC("system");
+            L(".Lcg_nopause");
+            I("mov eax, DWORD PTR [rbp - 4]");
+        }
         I("leave");
         I("ret");
 

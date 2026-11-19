@@ -83,5 +83,11 @@ int runExecutable(const std::string& exePath) {
         path = "./" + path;
 #endif
     }
+    // El programa generado hace una pausa al final; aqui no hace falta (ya vemos su salida).
+#ifdef _WIN32
+    _putenv("CG_NOPAUSE=1");
+#else
+    setenv("CG_NOPAUSE", "1", 1);
+#endif
     return runShell(quote(path));
 }
