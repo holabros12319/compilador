@@ -18,8 +18,9 @@ Codigos de salida: 0 ok, 1 lexico, 2 sintactico, 3 semantico, 4 archivo, 5 gener
 6 ensamblado/enlace, 7 uso incorrecto de la linea de comandos.
 
 ## Generar y ejecutar un programa nativo (Windows)
-    compiler_app examples/ok_bucles.c               # genera ok_bucles.s y ok_bucles.exe
-    compiler_app examples/ok_bucles.c --run         # ademas lo ejecuta
+    compiler_app                                     # compila y ejecuta el programa de prueba de main.cpp
+    compiler_app examples/ok_bucles.c               # genera ok_bucles.s y ok_bucles.exe y lo ejecuta
+    compiler_app examples/ok_bucles.c --run         # (se ejecuta por defecto; --no-run lo desactiva)
     compiler_app examples/ok_entrada.c -o suma.exe --run
     compiler_app examples/ok_bucles.c --asm-only    # solo el ensamblador (.s)
     compiler_app archivo.c --cc C:/mingw64/bin/gcc.exe   # elegir el ensamblador/enlazador

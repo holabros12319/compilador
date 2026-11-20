@@ -30,12 +30,12 @@ namespace {
         std::string salida;                       // -o: ejecutable de salida
         std::string cc;                           // --cc: gcc/clang a usar para ensamblar y enlazar
         bool soloAsm = false;                     // --asm-only: no ensamblar ni enlazar
-        bool ejecutar = false;                    // --run: ejecutar el programa generado
+        bool ejecutar = true;                     // por defecto se ejecuta el programa generado (--no-run lo desactiva)
         TargetOS objetivo = defaultTargetOS();    // --target windows|linux
     };
 
     void mostrarUso() {
-        std::cerr << "Uso: compiler_app [archivo_fuente] [-o salida] [--run] [--asm-only]\n"
+        std::cerr << "Uso: compiler_app [archivo_fuente] [-o salida] [--no-run] [--asm-only]\n"
                      "                  [--target windows|linux] [--cc ruta/al/gcc]\n";
     }
 
@@ -50,6 +50,7 @@ namespace {
             if (a == "-o") { if (!valor(op.salida)) return false; }
             else if (a == "--cc") { if (!valor(op.cc)) return false; }
             else if (a == "--run") op.ejecutar = true;
+            else if (a == "--no-run") op.ejecutar = false;
             else if (a == "--asm-only") op.soloAsm = true;
             else if (a == "--target") {
                 std::string t;
@@ -114,12 +115,15 @@ int main(int argc, char* argv[]) {
         int main() {
            int x = 0;
            int y = 0;
+           cout << "Ingresa x: ";
            cin >> x;
+           cout << "Ingresa y: ";
            cin >> y;
 
            Punto p;
            p.x = x;
            p.y = y;
+           cout << "Punto: x=" << p.x << " y=" << p.y << '\n';
 
            if (x > y) {
               cout << "x es mayor" << '\n';
